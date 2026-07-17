@@ -1,0 +1,13 @@
+services:
+  app:
+    container_name: 0day
+    image: theinternetcommoner/0daydiary:1.0
+    ports:
+      - 4500:4500 # host_port:container_port
+    volumes:
+      # - source(host):target(container)
+      # - C:\crimcal\crimcalendar.db:/crimcalendar/crimcalendar.db
+      - type: bind
+        source: 'C:\0day_diary'
+        target: /0day_diary
+    restart: always
