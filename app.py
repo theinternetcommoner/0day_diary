@@ -6,7 +6,10 @@ from waitress import serve
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24) # For secure flash messages
-DB_NAME = "diary.db"
+# DB_NAME = "diary.db"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DB_DIR = os.path.join(BASE_DIR, "data")
+DB_NAME = os.path.join(DB_DIR, "diary.db")
 
 def get_db_connection():
     conn = sqlite3.connect(DB_NAME)
@@ -14,6 +17,9 @@ def get_db_connection():
     return conn
 
 def init_db():
+    if not os.path.exists(DB_DIR):
+        os.makedirs(DB_DIR)
+
     with get_db_connection() as conn:
         conn.execute('''
             CREATE TABLE IF NOT EXISTS entries (
@@ -62,4 +68,8 @@ def index():
 if __name__ == '__main__':
     init_db()
     # app.run(debug=True)
-    serve(app, host="0.0.0.0", port=4500, threads=6)
+
+    HOST = "0.0.0.0"
+    PORT = 4500
+    print(f"App running at {HOST}:{PORT}")
+    serve(app, host=HOST, port=PORT, threads=6)
