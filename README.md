@@ -1,7 +1,7 @@
 <img width="1365" height="612" alt="Screenshot_2" src="https://github.com/user-attachments/assets/b580dfd4-de18-4bd8-978a-1b536df2ea33" />
 
 # Zer0 Day Diary
-No fluff. just you thoughts
+No fluff. just your thoughts
 
 ## Stack
 Python 3.11 or higher  
