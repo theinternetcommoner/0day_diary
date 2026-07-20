@@ -42,7 +42,7 @@ python app.py
 
 To build the image uding the Dockerfile
 ```cmd
-docker build -t <yourpreferedimagename> .
+docker build -t <yourpreferredimagename> .
 ```
 
 Edit the compose.yml file and add your directory (for persistence)
