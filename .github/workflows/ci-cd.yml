@@ -23,8 +23,7 @@ jobs:
       - name: Install dependencies & Run Unit Tests
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          # Add linters/tests here if applicable (e.g., pytest)
+          pip install -r requirements.txt
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
