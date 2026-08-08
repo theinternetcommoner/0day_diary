@@ -1,4 +1,4 @@
-name: 0day_diady CI/CD Pipeline
+name: 0day_diary CI/CD Pipeline
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Build Container
-        run: docker build -t 0day_diady .
+        run: docker build -t 0day_diary .
 
       - name: Run Container
         run: docker compose up -d
