@@ -32,7 +32,9 @@ jobs:
         run: docker compose up -d --build
 
       - name: Wait for Container Health Check
-        run: curl -f http://localhost:4500/healths
+        run: |
+        sleep 30
+        curl -f http://localhost:4500/health
 
       - name: Clean up Containers
         if: always()
