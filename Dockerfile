@@ -11,4 +11,4 @@ WORKDIR /0day_diary
 ENV PYTHONDONTWRITEBYTECODE=1
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 4500
-CMD ["python", "app.py"]
+CMD ["python", "wsgi.py"]
