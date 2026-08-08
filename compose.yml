@@ -1,13 +1,15 @@
 services:
   app:
     container_name: 0day
-    image: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: 0day-app:latest
     ports:
-      - 4500:4500 # host_port:container_port
+      # - "host_port:container_port"
+      - "4500:4500"
     volumes:
-      # - source(host):target(container)
-      # - C:\diary\diary.db:/0day_diary/diary.db
       - type: bind
-        source: 'C:/diary'
+        source: C:/diary
         target: /0day_diary/data
-    restart: always
+    restart: unless-stopped
