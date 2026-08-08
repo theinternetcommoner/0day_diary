@@ -29,8 +29,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and Start Containers
-        run: docker compose up -d --build
+      - name: Build Container
+        run: docker compose build
+
+        - name: Start Container
+        run: docker compose up -d
 
       - name: Perform Healthcheck
         run: |

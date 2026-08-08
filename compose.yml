@@ -1,10 +1,10 @@
 services:
   app:
     container_name: 0day
+    image: 0day_diary
     build:
       context: .
       dockerfile: Dockerfile
-    image: 0day-app:latest
     ports:
       # - "host_port:container_port"
       - "4500:4500"
