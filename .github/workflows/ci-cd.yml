@@ -31,10 +31,15 @@ jobs:
       - name: Build and Start Containers
         run: docker compose up -d --build
 
-      - name: Perform Healthcheck
+      - name: Wait for Container Health Check
         run: |
-          sleep 10
-          http://localhost:4500/health
+          timeout 60 bash -c '
+          until [ "$(docker inspect --format="{{.State.Health.Status}}" my-container-name)" == "healthy" ]; do
+            echo "Waiting for container to be healthy..."
+            sleep 2
+          done
+          echo "Container is healthy and ready!"
+          '
 
       - name: Clean up Containers
         if: always()
