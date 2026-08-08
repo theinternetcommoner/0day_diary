@@ -1,7 +1,7 @@
 services:
   app:
     container_name: 0day
-    image: 0day_diary
+    image: .
     ports:
       - 4500:4500 # host_port:container_port
     volumes:
