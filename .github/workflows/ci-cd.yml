@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Flask CI/CD Pipeline
 
 on:
   push:
@@ -7,12 +7,28 @@ on:
     branches: [ "main" ]
 
 jobs:
-
-  build:
-
+  test-and-build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    # 1. Check out the repository code
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. Verify Docker Compose can build the image cleanly
+    - name: Build local services
+      run: docker compose build
+
+    # 3. Start the application to ensure it boots correctly
+    - name: Start containers
+      run: docker compose up -d
+
+    # 4. Perform a simple HTTP health check status verification
+    - name: Test application health
+      run: |
+        sleep 5
+        curl --fail http://localhost:4500/ || exit 1
+
+    # 5. Shut down the containers safely
+    - name: Stop containers
+      run: docker compose down

@@ -2,7 +2,6 @@ import os
 import sqlite3
 from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for, flash
-from waitress import serve
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24) # For secure flash messages
@@ -67,9 +66,4 @@ def index():
 
 if __name__ == '__main__':
     init_db()
-    # app.run(debug=True)
-
-    HOST = "0.0.0.0"
-    PORT = 4500
-    print(f"App running at {HOST}:{PORT}")
-    serve(app, host=HOST, port=PORT, threads=6)
+    app.run(debug=True)
