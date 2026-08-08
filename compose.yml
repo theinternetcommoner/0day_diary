@@ -9,6 +9,7 @@ services:
       - "4500:4500"
     volumes:
       - type: bind
-        source: C:\diary
+        # source: C:\diary
+        source: .\diary
         target: /0day_diary/data
     restart: unless-stopped
