@@ -34,7 +34,7 @@ jobs:
       - name: Wait for Container Health Check
         run: |
         sleep 10
-        curl -f http://localhost:4500/health
+        curl -f http://0.0.0.0:4500/health
 
       - name: Clean up Containers
         if: always()
