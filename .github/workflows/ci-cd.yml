@@ -41,9 +41,9 @@ jobs:
               exit 0
             fi
             sleep 3
-          done
-          echo "App failed to return 200 OK"
-          exit 1
+            done
+            echo "App failed to return 200 OK"
+            exit 1
 
         - name: Fetch Container Logs on Failure
           if: failure()
