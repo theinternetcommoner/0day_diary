@@ -31,11 +31,9 @@ jobs:
       - name: Build and Start Containers
         run: docker compose up -d --build
 
-      - name: Wait for service to be ready
-        run: sleep 10
-
       - name: Wait for Container Health Check
-        run: curl http://localhost:4500/health || exit 1
+        run:| sleep 10
+        curl http://localhost:4500/health
 
       # - name: Clean up Containers
       #   if: always()
