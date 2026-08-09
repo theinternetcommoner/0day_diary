@@ -31,13 +31,11 @@ jobs:
       - name: Build and Start Containers
         run: docker compose up -d --build
 
-      - name: Wait for container to be healthy
-        uses: crccheck/Lifecycle-action@v1
-        with:
-          # Explicit container name configured during 'docker run'
-          container-name: 0day
-          # Fail the step if it isn't healthy
-          require-healthy: true
+      - name: Wait for service to be ready
+        run: sleep 30
+
+      - name: Wait for Container Health Check
+        run: curl -f http://0.0.0.0:4500/health || exit 1
 
       - name: Clean up Containers
         if: always()
