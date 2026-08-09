@@ -36,6 +36,6 @@ jobs:
           sleep 60
           curl -s -o /dev/null -w "%{http_code}" http://localhost:4500/
 
-      # - name: Clean up Containers
-      #   if: always()
-      #   run: docker compose down -v
+      - name: Fetch Container Logs on Failure
+        if: failure()
+        run: docker compose logs
