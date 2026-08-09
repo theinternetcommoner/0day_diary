@@ -31,6 +31,15 @@ jobs:
       - name: Build and Start Containers
         run: docker compose up -d --build
 
+      - name: Verify container is running
+        run: |
+          STATUS=$(docker inspect --format='{{.State.Status}}' <CONTAINER_NAME_OR_ID>)
+          echo "Container status is: $STATUS"
+          if [ "$STATUS" != "running" ]; then
+            echo "Error: Container is not running!"
+            exit 1
+          fi
+          
       - name: Fetch Container Logs on Failure
         if: failure()
         run: docker compose logs
