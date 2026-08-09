@@ -34,7 +34,7 @@ jobs:
       - name: Wait for Container Status
         run: |
           sleep 5
-          curl http://localhost:4500/
+          curl http://0day:4500/
 
       # - name: Clean up Containers
       #   if: always()
