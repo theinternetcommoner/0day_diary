@@ -34,8 +34,8 @@ jobs:
       - name: Wait for service to be ready
         run: sleep 10
 
-      - name: Wait for Container Health Check
-        run: curl http://localhost:4500/health || exit 1
+      - name: Wait for Container Response
+        run: curl http://localhost:4500/ || exit 1
 
       # - name: Clean up Containers
       #   if: always()
